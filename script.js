@@ -9,8 +9,7 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+
 
 // Declaration of character sets and password limits
 var passwordChar = "";
@@ -22,7 +21,7 @@ var specChar = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 // Sets length of password
 var passwordCharTotal = "0";
 
-// Prompts Function
+// Character quantity prompt function
 function lengthPrompt() {
   var minChar = 8;
   var maxChar = 128;
@@ -49,10 +48,17 @@ function lengthPrompt() {
   }
 }
 
+//Generate Password Function
 function generatePassword() {
-  lengthPrompt();
+  //Resets all values to 0
+  computedPassword = "";
+  passwordChar = "";
+  passwordCharTotal = "0";
   
-  // Character Confirmation
+  // Character Length Function Call
+  lengthPrompt();
+
+  // Character Boolean Confirmation
   var lowerCaseKey = confirm("Would you like to use lower case letters?");
   var upperCaseKey = confirm("Would you like to use upper case letters?");
   var numValuesKey = confirm("Would you like to use numbers?");
@@ -68,7 +74,7 @@ function generatePassword() {
     alert("You must select at least one!");
     return userConfirm();
   } 
-  if
+  // If these Booleans are true, each set of characters are added to total set of available characters
   if (lowerCaseKey === true) {
     passwordChar += lowerCaseLetters;
   } if (upperCaseKey === true) {
@@ -78,12 +84,24 @@ function generatePassword() {
   } if (specCharKey === true) {
     passwordChar += specChar;
   }
-  console.log(passwordChar);
+
   
+  // Upper Limit of Math Functions
+  var totalAvailableCharacters = passwordChar.length;
+
+  var passCharInd;
+
+  // Loop this function until the total number of characters is met
+  for (var i=0;i<passwordCharTotal;i++){
+    passCharInd = Math.floor(Math.random() * totalAvailableCharacters);
+  
+
+    computedPassword += passwordChar[passCharInd];
+  }
+    return computedPassword;
+    
 }
 
-
-// Call Function
-console.log(passwordCharTotal);
-generatePassword();
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
 
