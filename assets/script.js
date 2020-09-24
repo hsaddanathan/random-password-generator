@@ -9,13 +9,13 @@ function writePassword() {
   passwordText.value = password;
 }
 
-
-
 // Declaration of character sets and password limits
 var passwordChar = "";
 var upperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var lowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
-var numChar = "0123456789";
+
+//Cycled through numbers 3 times in order to make the numbers have a more equal chance of being selected
+var numChar = "012345678901234567890123456789";
 var specChar = "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~";
 
 // Sets length of password
@@ -33,11 +33,10 @@ function lengthPrompt() {
       " characters.)"
   );
   if (passLength === "null") {
-    close();
   } else if (isNaN(passLength) === true) {
     alert("You must pick a number.");
     return lengthPrompt();
-  } else if (parseInt(passLength )< minChar || parseInt(passLength) > maxChar) {
+  } else if (passLength < minChar || passLength > maxChar) {
     alert(
       "You must pick a whole number between " + minChar + " & " + maxChar + "."
     );
@@ -54,7 +53,7 @@ function generatePassword() {
   computedPassword = "";
   passwordChar = "";
   passwordCharTotal = "0";
-  
+
   // Character Length Function Call
   lengthPrompt();
 
@@ -72,36 +71,35 @@ function generatePassword() {
     specCharKey === false
   ) {
     alert("You must select at least one!");
-    return userConfirm();
-  } 
+    return generatePassword();
+  }
   // If these Booleans are true, each set of characters are added to total set of available characters
   if (lowerCaseKey === true) {
     passwordChar += lowerCaseLetters;
-  } if (upperCaseKey === true) {
+  }
+  if (upperCaseKey === true) {
     passwordChar += upperCaseLetters;
-  } if (numValuesKey === true) {
+  }
+  if (numValuesKey === true) {
     passwordChar += numChar;
-  } if (specCharKey === true) {
+  }
+  if (specCharKey === true) {
     passwordChar += specChar;
   }
 
-  
   // Upper Limit of Math Functions
   var totalAvailableCharacters = passwordChar.length;
 
   var passCharInd;
 
   // Loop this function until the total number of characters is met
-  for (var i=0;i<passwordCharTotal;i++){
+  for (var i = 0; i < passwordCharTotal; i++) {
     passCharInd = Math.floor(Math.random() * totalAvailableCharacters);
-  
 
     computedPassword += passwordChar[passCharInd];
   }
-    return computedPassword;
-    
+  return computedPassword;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
