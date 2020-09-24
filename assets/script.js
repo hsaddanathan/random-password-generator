@@ -32,12 +32,12 @@ function lengthPrompt() {
       maxChar +
       " characters.)"
   );
-  console.log(passLength);
   if (passLength === "null") {
+    close();
   } else if (isNaN(passLength) === true) {
     alert("You must pick a number.");
     return lengthPrompt();
-  } else if (passLength < minChar || passLength > maxChar) {
+  } else if (parseInt(passLength )< minChar || parseInt(passLength) > maxChar) {
     alert(
       "You must pick a whole number between " + minChar + " & " + maxChar + "."
     );
