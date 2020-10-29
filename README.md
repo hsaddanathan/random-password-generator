@@ -41,3 +41,5 @@ Github Deployed Site URL:
 ## Contributors 
 [@hsaddanathan](https://github.com/hsaddanathan)
 
+## License
+MIT
